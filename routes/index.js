@@ -4,11 +4,13 @@ var os = require('os');
 var router = express.Router();
 var ifaces = os.networkInterfaces();
 var localAddress = '';
-var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
-var environmentNotice = environment === 'production' ? '' : environment + ' environment';
+var environment =
+  process.env.NODE_ENV === 'production' ? 'production' : 'development';
+var environmentNotice =
+  environment === 'production' ? '' : environment + ' environment';
 
 Object.keys(ifaces).forEach(function (ifname) {
-  var alias = 0;
+  //var alias = 0;
 
   ifaces[ifname].forEach(function (iface) {
     if ('IPv4' !== iface.family || iface.internal !== false) {
@@ -19,14 +21,13 @@ Object.keys(ifaces).forEach(function (ifname) {
   });
 });
 
-
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { 
-    title: 'Accumulator', 
+router.get('/', function (req, res) {
+  res.render('index', {
+    title: 'Accumulator',
     environment: environment,
     environmentNotice: environmentNotice,
-    localAddress: localAddress 
+    localAddress: localAddress,
   });
 });
 

@@ -12,7 +12,7 @@ phases:
       - rm -rf node_modules
   build:
     commands:
-      - npm install --production 
+      - npm install --production
       - npm run build
 
 artifacts:

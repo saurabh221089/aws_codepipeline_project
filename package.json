@@ -7,7 +7,9 @@
 		"start": "node ./bin/www",
 		"stop": "pkill -SIGINT ca-app",
 		"test": "karma start",
-		"configure-husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\""
+		"configure-husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\"",
+		"lint": "npx prettier --check .",
+		"eslint": "eslint . --fix"
 	},
 	"husky": {
 		"hooks": {
@@ -45,8 +47,9 @@
 	},
 	"lint-staged": {
 		"**/*.{js,jsx,ts,tsx}": [
-			"eslint . --ext .js --fix",
-			"prettier --write ."
+			"npm run eslint",
+			"prettier --write .",
+			"git add ."
 		]
 	}
 }
