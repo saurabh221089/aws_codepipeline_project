@@ -9,7 +9,8 @@
 		"test": "karma start",
 		"configure-husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\"",
 		"lint": "npx prettier --check .",
-		"eslint": "eslint . --fix"
+		"eslint": "eslint . --fix",
+		"format": "prettier --write . && git add ."
 	},
 	"husky": {
 		"hooks": {
@@ -48,8 +49,7 @@
 	"lint-staged": {
 		"**/*.{js,jsx,ts,tsx}": [
 			"npm run eslint",
-			"prettier --write .",
-			"git add ."
+			"npm run format"
 		]
 	}
 }
